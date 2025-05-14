@@ -1,8 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+interface AboutProps {
+  language: string
+}
 
-function About() {
+function About({language} :AboutProps) {
   // Jawna deklaracja ikon jako ReactNode
 
 
@@ -13,8 +16,8 @@ function About() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, type: 'spring' }} style={{ zIndex: 1, maxWidth: '800px', textAlign: 'center' }}>
         <h1 style={{ fontSize: '3rem', marginBottom: '1rem', textShadow: '0 0 10px rgba(255, 255, 255, 0.6)' }}>O projekcie</h1>
-        <p style={{ fontSize: '1.2rem', lineHeight: '1.8', opacity: 0.85 }}><strong>MailCraft AI</strong> to nowoczesne narzędzie stworzone z myślą o automatyzacji pisania e-maili. Dzięki integracji z technologią sztucznej inteligencji, możesz w kilka sekund wygenerować profesjonalną wiadomość — wystarczy podać temat oraz cel. To idealne rozwiązanie dla zapracowanych osób, które chcą szybko, a jednocześnie z klasą, napisać maila.</p>
-        <p style={{ fontSize: '1.2rem', marginTop: '2rem', lineHeight: '1.8', opacity: 0.85 }}>Projekt został zbudowany w oparciu o React, Framer Motion oraz OpenAI API. Kod jest lekki, responsywny i łatwy do rozbudowy. Zapraszamy do testowania!</p>
+        <p style={{ fontSize: '1.2rem', lineHeight: '1.8', opacity: 0.85 }}><strong>MailPilot AI</strong>{language === 'EN' ? (' is a modern tool designed for email writing automation. With the integration of artificial intelligence technology, you can generate a professional message in just seconds — simply provide the subject and purpose. Its the perfect solution for busy individuals who want to write an email quickly, yet with class.') : (' to nowoczesne narzędzie stworzone z myślą o automatyzacji pisania e-maili. Dzięki integracji z technologią sztucznej inteligencji, możesz w kilka sekund wygenerować profesjonalną wiadomość — wystarczy podać temat oraz cel. To idealne rozwiązanie dla zapracowanych osób, które chcą szybko, a jednocześnie z klasą, napisać maila.')}</p>
+        <p style={{ fontSize: '1.2rem', marginTop: '2rem', lineHeight: '1.8', opacity: 0.85 }}>{ language === 'EN' ? ('The project is built using React, Framer Motion, and the OpenAI API. The code is lightweight, responsive, and easy to expand. Feel free to give it a try!') : ('Projekt został zbudowany w oparciu o React, Framer Motion oraz OpenAI API. Kod jest lekki, responsywny i łatwy do rozbudowy. Zapraszamy do testowania!')}</p>
       </motion.div>
       
       <motion.div

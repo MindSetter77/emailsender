@@ -11,9 +11,10 @@ interface HomeProps {
     setGeneratedEmail: React.Dispatch<React.SetStateAction<string>>
     error: boolean
     setError: React.Dispatch<React.SetStateAction<boolean>>
+    language: string
 }
 
-function Home({generatedEmail, setGeneratedEmail, error, setError} : HomeProps) {
+function Home({generatedEmail, setGeneratedEmail, error, setError, language} : HomeProps) {
 
     const [minHeight, setMinHeight] = useState('0px');
 
@@ -55,7 +56,7 @@ function Home({generatedEmail, setGeneratedEmail, error, setError} : HomeProps) 
       >
       <h1 style={{ fontSize: '3rem', textShadow: '0 0 10px rgba(255, 255, 255, 0.6)', marginTop: '75px  ' }}>
         <Typewriter
-          words={['✉️ AI Email Generator', '📬 Szybkie. Profesjonalne. AI.']}
+          words={ language === 'EN' ? ['✉️ AI Email Generator', '📬 Szybkie. Profesjonalne. AI.'] : ['✉️ AI Email Generator', '📬 Fast. Professional. AI.']}
           loop={0}
           cursor
           cursorStyle="_"
@@ -70,14 +71,15 @@ function Home({generatedEmail, setGeneratedEmail, error, setError} : HomeProps) 
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2, duration: 1, type: 'spring' }}
         style={{ fontSize: '1.1rem', opacity: 0.8, marginBottom: '2rem', maxWidth: '600px', textAlign: 'center', zIndex: 1 }}>
-          Automatycznie generuj profesjonalne maile w kilka sekund dzięki sztucznej inteligencji. Podaj temat i cel, a resztę zrobi AI!
+          {language === 'EN' ? ('Automatically generate professional emails in seconds with the help of artificial intelligence. Provide the subject and purpose, and the AI will handle the rest!'):
+          ('Automatycznie generuj profesjonalne maile w kilka sekund dzięki sztucznej inteligencji. Podaj temat i cel, a resztę zrobi AI!')}
         </motion.p>
         { error ? (<ErrorMessage/>) : null}
         
 
         <div style={{minHeight: generatedEmail === 'wait' ? ('550px') : ('0px'), display: 'flex', alignItems: 'center'}}>
         {generatedEmail === '' ? (
-          <EmailSender setGeneratedEmail={setGeneratedEmail} setError={setError} />
+          <EmailSender setGeneratedEmail={setGeneratedEmail} setError={setError} language={language}/>
         ) : generatedEmail === 'wait' ? (<Spinner/>) : (
           <GeneratedComp generatedEmail={generatedEmail}/>
         )}

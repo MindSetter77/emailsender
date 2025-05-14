@@ -11,15 +11,15 @@ import React, {useState} from 'react';
 function App() {
   const [generatedEmail, setGeneratedEmail] = useState<string>('');
   const [error, setError] = useState<boolean>(false)
-
+  const [language, setLanguage] = useState<string>('EN')
   
 
-  return (  
+  return (
     <Router>
-      <Navbar setGeneratedEmail={setGeneratedEmail} setError={setError}/>
+      <Navbar setGeneratedEmail={setGeneratedEmail} setError={setError} language={language} setLanguage={setLanguage}/>
       <Routes>
-        <Route path="/" element={<Home generatedEmail={generatedEmail} setGeneratedEmail={setGeneratedEmail} error={error} setError={setError} />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/" element={<Home generatedEmail={generatedEmail} setGeneratedEmail={setGeneratedEmail} error={error} setError={setError} language={language} />} />
+        <Route path="/about" element={<About language={language}/>} />
       </Routes>
     </Router>
   );
